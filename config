@@ -95,10 +95,20 @@ bindsym $mod+a focus parent
 #        \/        \/        \/         \/         \/        \/                 \/        \/#
 ################################################################My Edits/Changes#############
 
+#Hot_Keys
+#--Web
+bindsym $mod+Shift+i exec chromium 
+
+#EXIT i3
+bindsym $mod+Shift+e exec i3-msg exit
+
+#WIFI
+#exec --no-startup-id wicd-gtk -t
+
 #Battery Warning!
 exec xfce4-power-manager 
 #Wallpaper
-exec_always --no-startup-id feh --bg-scale /home/green/Downloads/1457383954210.jpg
+exec_always --no-startup-id feh  --randomize --bg-scale /home/green/Pictures/Wallpapers/*
 
 #compton for shadows and fades
 exec compton -f
@@ -126,11 +136,14 @@ set $workspace9 "9: Games "
 set $workspace10 "10: Music "
 
 assign [class="Firefox"] $workspace2
+assign [class="Pale moon"] $workspace2
 assign [class="sublime_text"] $workspace4
 assign [class="obs"] $workspace8
+assign [class="Kazam"] $workspace8
 assign [class="tomahawk"] $workspace10
 assign [class="chromium"] $workspace2
 assign [class="Steam"] $workspace9
+assign [class="Hexchat"] $workspace3
 #assign [class=""] $workspace2
 #
 # Workspaces:
@@ -164,7 +177,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -215,7 +228,7 @@ gaps inner 5
 gaps outer 3
 
 #i3lock Keybindx.png
-bindsym $mod+shift+x exec i3lock --image=/home/green/Downloads/85.png
+bindsym $mod+shift+x exec i3lock --image=/home/green/Pictures/Wallpapers/1458350413050.png
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -233,3 +246,21 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # Floating windows
 # force floating for all new windows
 for_window [class="Xfce4-terminal"] floating enable
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
